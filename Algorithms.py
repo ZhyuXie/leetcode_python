@@ -4,13 +4,15 @@
 
 
 class Solution(object):
+
+    ## Given a string, find the length of the longest substring without repeating characters.
     def lengthOfLongestSubstring(self, s):
         """
         :type s: str
         :rtype: int
         """
         
-        if s==null or len(s)==0:
+        if s is None or len(s)==0:
             return 0
             
         charset = set()
@@ -20,7 +22,14 @@ class Solution(object):
         
         for i in xrange(len(s)):
             if s[i] in charset:
-                
+                while s[back] != s[i]:
+                    charset.remove(s[back])
+                    back += 1
+                back += 1
+            charset.add(s[i])
+            pre = i
+            maxlen = max(maxlen, pre-back+1)
+        return maxlen
 
 
 
@@ -28,5 +37,5 @@ class Solution(object):
 
 if __name__ == '__main__':
 
-    
-
+    solu = Solution()
+    print solu.lengthOfLongestSubstring('pwwkew')
