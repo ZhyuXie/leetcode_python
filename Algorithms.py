@@ -144,10 +144,10 @@ class Solution(object):
         :rtype: ListNode
         """
         
-        # use two list
         if l1 == None: return l2
         if l2 == None: return l1
 
+        # use two list
         res = ListNode(None)
         ls1 = []
         ls2 = []
@@ -166,20 +166,20 @@ class Solution(object):
         carry = 0
         while len1 - idx >=0 or len2 - idx >= 0:
             if len1 - idx >=0 and len2 - idx >= 0:
-                reminder = (ls1[len1-idx] + ls2[len2-idx] + carry) % 10
-                newNode = ListNode((ls1[len1-idx] + ls2[len2-idx] + carry) // 10)
+                reminder = (ls1[len1-idx] + ls2[len2-idx] + carry) // 10
+                newNode = ListNode((ls1[len1-idx] + ls2[len2-idx] + carry) % 10)
                 carry = reminder
                 newNode.next = res.next
                 res.next = newNode
             elif len1 - idx >= 0:
-                reminder = (ls1[len1-idx] + carry) % 10
-                newNode = ListNode((ls1[len1-idx] + carry) // 10)
+                reminder = (ls1[len1-idx] + carry) // 10
+                newNode = ListNode((ls1[len1-idx] + carry) % 10)
                 carry = reminder
                 newNode.next = res.next
                 res.next = newNode
             elif len2 - idx >= 0:
-                reminder = (ls2[len2-idx] + carry) % 10
-                newNode = ListNode((ls2[len2-idx] + carry) // 10)
+                reminder = (ls2[len2-idx] + carry) // 10
+                newNode = ListNode((ls2[len2-idx] + carry) % 10)
                 carry = reminder
                 newNode.next = res.next
                 res.next = newNode
@@ -187,7 +187,8 @@ class Solution(object):
                 break
 
             idx += 1
-
+        
+        # if the carry is not zero in the end, insert it into the list 
         if carry > 0:
             newNode = ListNode(carry)
             newNode.next = res.next
