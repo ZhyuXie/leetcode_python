@@ -115,7 +115,7 @@ class Solution(object):
         return maxlen
 
 
-    ## Q4 ##
+    ## Q4 Median of Two Sorted Arrays ##
     '''
     There are two sorted arrays nums1 and nums2 of size m and n respectively.
     Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
@@ -127,7 +127,39 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
+       
+
+    ## Q328 Odd even linked list ##
+    '''
+    Given a singly linked list, group all odd nodes together followed by the even nodes. 
+    Please note here we are talking about the node number and not the value in the nodes.
+    You should try to do it in place. The program should run in O(1) space complexity 
+    and O(nodes) time complexity.
+    '''
+
+    def oddEvenList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
         
+        if head == None:
+            return head
+
+        odd = head
+        even = head.next
+        temp = even
+        while even != None and even.next != None:
+            odd.next = even.next
+            odd = odd.next
+            even.next = odd.next
+            even = even.next
+
+        odd.next = temp
+
+        return head
+
+
 
     ## Q445 Add Two Numbers II ##
     '''
