@@ -6,7 +6,7 @@
 class Solution(object):
 
 
-    ## Q1 ##
+    ## Q1 Two Sum ##
     '''
     Given an array of integers, return indices of the two numbers 
     such that they add up to a specific target.
@@ -30,7 +30,7 @@ class Solution(object):
                 secnumdict[target-nums[i]] = i
         
 
-    ## Q2 ##
+    ## Q2 Add Two Numbers ##
     '''
     You are given two non-empty linked lists representing two non-negative integers. 
     The digits are stored in reverse order and each of their nodes contain a single digit. 
@@ -87,7 +87,7 @@ class Solution(object):
 
 
 
-    ## Q3 ##
+    ## Q3 Longest Substring Without Repeating Characters ##
     # Given a string, find the length of the longest substring without repeating characters.
     def lengthOfLongestSubstring(self, s):
         """
