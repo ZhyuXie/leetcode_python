@@ -120,6 +120,34 @@ class Solution(object):
     There are two sorted arrays nums1 and nums2 of size m and n respectively.
     Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
     '''
+    
+    def getKth(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: int
+        """
+
+        lenA = len(nums1)
+        lenB = len(nums2)
+        if lenA > lenB:
+            return self.getKth(nums2,nums1,k)
+
+        if lenA == 0:
+            return nums2[k-1]
+
+        if k == 1:
+            return min(nums1[0], nums2[0])
+
+        pa = min(k/2, lenA)
+        pb = k - pa
+        if nums1[pa-1] < nums2[pb-1]:
+            return self.getKth(nums1[pa:], nums2, k - pa)
+        elif nums1[pa-1] > nums2[pb-1]:
+            return self.getKth(nums1, nums2[pb:], k - pb)
+        else:
+            return nums1[pa-1]
 
     def findMedianSortedArrays(self, nums1, nums2):
         """
@@ -127,6 +155,15 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
+
+        lenA = len(nums1)
+        lenB = len(nums2)
+
+        if (lenA + lenB) % 2 == 1:
+            return self.getKth(nums1,nums2,(lenA + lenB)/2 + 1)
+        else:
+            return (self.getKth(nums1,nums2,(lenA + lenB)/2) + self.getKth(nums1,nums2,(lenA + lenB)/2 + 1)) * 0.5
+
        
 
     ## Q328 Odd even linked list ##
@@ -238,6 +275,8 @@ if __name__ == '__main__':
 
     solu = Solution()
 
-    print solu.twoSum([2,7,11,15],9)
+    #print solu.twoSum([2,7,11,15],9)
 
     #print solu.lengthOfLongestSubstring('pwwkew')
+
+    print solu.findMedianSortedArrays([],[2,3])
